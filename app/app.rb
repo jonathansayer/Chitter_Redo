@@ -12,7 +12,9 @@ class Chitter < Sinatra::Base
       @current_user = session[:user]
     end
     if params[:New_Peep]
-      @peep = params[:New_Peep]
+      p params[:New_Peep]
+      Peep.create(message: params[:New_Peep])
+      p @peep = Peep.all
     end
     erb :'users/welcome_page'
   end
@@ -53,12 +55,12 @@ class Chitter < Sinatra::Base
     end
   end
 
-  get '/user/delete' do 
-  if session[:user] 
+  get '/user/delete' do
+  if session[:user]
     session.delete(:user)
   end
   erb :'users/delete'
-  end  
+  end
 
-  
+
 end

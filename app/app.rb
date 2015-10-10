@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/flash'
+require_relative 'data_mapper_setup'
 
 class Chitter < Sinatra::Base
 
@@ -12,9 +13,8 @@ class Chitter < Sinatra::Base
       @current_user = session[:user]
     end
     if params[:New_Peep]
-      p params[:New_Peep]
       Peep.create(message: params[:New_Peep])
-      p @peep = Peep.all
+      @peep = Peep.all
     end
     erb :'users/welcome_page'
   end

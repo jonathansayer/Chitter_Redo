@@ -17,6 +17,7 @@ feature 'Peeps' do
     click_button "Sign Up"
     sign_up
     fill_in :New_Peep, with: "Jon is great"
+    click_button 'Post Peep'
     expect(Peep.count).to eq(1)
   end
 
